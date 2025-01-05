@@ -1,6 +1,7 @@
 package guru.springframework.models;
 
 import javax.persistence.*;
+import java.util.List;
 
 
 @Entity
@@ -21,6 +22,9 @@ public class Recipe {
     private Byte[] image;
 
     private Difficulty difficulty;
+
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "recipe")
+    private List<Ingredient> ingredients;
 
     public Recipe(){}
 
@@ -105,5 +109,13 @@ public class Recipe {
 
     public void setDifficulty(Difficulty difficulty) {
         this.difficulty = difficulty;
+    }
+
+    public List<Ingredient> getIngredients() {
+        return ingredients;
+    }
+
+    public void setIngredients(List<Ingredient> ingredients) {
+        this.ingredients = ingredients;
     }
 }
